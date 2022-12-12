@@ -48,7 +48,7 @@ function updateGameState(state) {
 
 // Draws all the pixels in the pixel array
 function drawGameState(state) {
-    
+
     traverseDisplayMatrices(state.display.grid, state.display.colors, (gridElement, colorElement) => {
         ctx.fillStyle = colorElement;
         ctx.fillRect(gridElement.x, gridElement.y, gridElement.width, gridElement.height);
@@ -126,13 +126,16 @@ function generatePixelMatrix(columns, rows) {
 function gameLogic(state) {
 
     const lastState = {...state};
-    const colorsArray = ["black", "pink"];
+
+    const deadCellColor = "black";
+    const livingCellColor = "white";
+    const colorsArray = [deadCellColor, livingCellColor];
 
     state.ticks = state.ticks + 1;
 
     if (state.ticks === 1) {
         traverseAndMutateMatrix(state.display.colors, (color, row, column) => {
-            return color === 'black' ? colorsArray[Math.round(Math.random() - 0.425) % colorsArray.length] : 'black';
+            return color === deadCellColor ? colorsArray[Math.round(Math.random() - 0.45) % colorsArray.length] : deadCellColor;
         });
     }
 
@@ -142,18 +145,18 @@ function gameLogic(state) {
 
             const neighbors = getNeighbors(lastState.display.colors, row, column);
 
-            let blackNeighbors = 0;
-            let pinkNeighbors = 0;
+            let deadNeighbors = 0;
+            let livingNeighbors = 0;
 
             neighbors.forEach((neighbor) => {
-                if (neighbor === "black") {
-                    blackNeighbors++;
-                } else if (neighbor === "pink") {
-                    pinkNeighbors++;
+                if (neighbor === deadCellColor) {
+                    deadNeighbors++;
+                } else if (neighbor === livingCellColor) {
+                    livingNeighbors++;
                 }
             });
 
-            return applyRules(color, blackNeighbors, pinkNeighbors);
+            return applyRules(color, deadNeighbors, livingNeighbors, deadCellColor, livingCellColor);
         });
 
     }
@@ -161,25 +164,25 @@ function gameLogic(state) {
 }
 
 // Conway Game of Life rules
-function applyRules(color, blackNeighbors, pinkNeighbors) {
+function applyRules(color, deadNeighbors, livingNeighbors, deadCellColor, livingCellColor) {
     // Any live cell with fewer than two live neighbors dies
-    if (color === "pink" && pinkNeighbors < 2) {
-      return "black";
+    if (color === livingCellColor && livingNeighbors < 2) {
+      return deadCellColor;
     }
   
     // Any live cell with two or three live neighbors lives
-    if (color === "pink" && (pinkNeighbors === 2 || pinkNeighbors === 3)) {
-      return "pink";
+    if (color === livingCellColor && (livingNeighbors === 2 || livingNeighbors === 3)) {
+      return livingCellColor;
     }
   
     // Any live cell with more than three live neighbors dies
-    if (color === "pink" && pinkNeighbors > 3) {
-      return "black";
+    if (color === livingCellColor && livingNeighbors > 3) {
+      return deadCellColor;
     }
   
     // Any dead cell with exactly three live neighbors becomes a live cell
-    if (color === "black" && pinkNeighbors === 3) {
-      return "pink";
+    if (color === deadCellColor && livingNeighbors === 3) {
+      return livingCellColor;
     }
   
     return color;
