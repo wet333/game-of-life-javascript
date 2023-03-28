@@ -13,3 +13,27 @@ body {
     display: block;
     margin: auto;
 }
+
+#restart-button {
+    position: fixed;
+    left: 5%;
+    bottom: 5%;
+    background: #181818;
+    color: rgb(241, 241, 241);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#restart-button:hover {
+    background: #202020;
+}
+
+#restart-icon {
+    font-size: 140%;
+    font-weight: bold;
+    color: rgb(221, 35, 35);
+    margin: 0 5px 0 0;
+}
