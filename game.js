@@ -1,3 +1,7 @@
+import about from "./src/about.js";
+
+about.printInfo();
+
 const canvas = document.getElementById('my-canvas');
 const ctx = canvas.getContext('2d');
 
