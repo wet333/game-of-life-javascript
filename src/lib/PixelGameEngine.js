@@ -3,6 +3,8 @@ import { deepCopy } from "./utils.js";
 
 export class PixelGameEngine {
 
+    static instance;
+
     constructor(configuration, initialState, updateLogic, renderLogic, controlls = null) {
         
         if (PixelGameEngine.instance) {
@@ -16,9 +18,11 @@ export class PixelGameEngine {
         this.renderFunction = renderLogic;
         this.controlls = controlls;
 
+        console.log(this.configuration);
+
         this.canvas = new Canvas(
-            this.configuration.HTMLCanvasElementId, 
-            this.configuration.canvasSize,
+            configuration.HTMLCanvasElementId, 
+            configuration.canvasSize,
         );
     
         // Internal data

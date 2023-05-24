@@ -8,10 +8,14 @@ const DEFAULT_CANVAS_SIZE = {
     width: 700,
 }
 
-export const DEFAULT_CONFIGURATIONS = {
+const DEFAULT_CONFIGURATIONS = {
     fps: 1000 / DEFAULT_FPS,
     columns: DEFAULT_COLUMNS,
     rows: DEFAULT_ROWS,
     HTMLCanvasElementId: DEFAULT_HTML_CANVAS_ID,
     canvasSize: DEFAULT_CANVAS_SIZE,
 };
+
+export function getDefaultConfiguration() {
+    return DEFAULT_CONFIGURATIONS;
+}
