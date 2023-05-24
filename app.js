@@ -3,6 +3,8 @@ import { PixelGameEngine } from "./src/lib/PixelGameEngine.js";
 import { DEFAULT_CONFIGURATIONS } from "./src/lib/configurations.js";
 import { drawGameState } from "./src/rendering.js";
 
+console.log(DEFAULT_CONFIGURATIONS);
+
 const pixelGame = new PixelGameEngine(DEFAULT_CONFIGURATIONS, getInitialState(), gameLogic, drawGameState);
 pixelGame.start();
 

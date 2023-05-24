@@ -1,3 +1,4 @@
+import Canvas from "./Canvas.js";
 import { deepCopy } from "./utils.js";
 
 export class PixelGameEngine {
@@ -14,6 +15,11 @@ export class PixelGameEngine {
         this.updateFunction = updateLogic;
         this.renderFunction = renderLogic;
         this.controlls = controlls;
+
+        this.canvas = new Canvas(
+            this.configuration.HTMLCanvasElementId, 
+            this.configuration.canvasSize,
+        );
     
         // Internal data
         this.gameLoop;

@@ -1,6 +1,14 @@
-import { ctx } from "./canvas.js";
+import { PixelGameEngine } from "./lib/PixelGameEngine.js";
+
+const game = new PixelGameEngine();
+const ctx = game.canvas.getContext();
 
 export function drawGameState(state) {
+
+    // Black background
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     traverseDisplayMatrices(state.display.grid, state.display.colors, (gridElement, colorElement) => {
         ctx.fillStyle = colorElement;
         ctx.fillRect(gridElement.x, gridElement.y, gridElement.width, gridElement.height);

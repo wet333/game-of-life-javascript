@@ -1,4 +1,7 @@
-import { canvas } from "./canvas.js";
+import { PixelGameEngine } from "./lib/PixelGameEngine.js";
+
+const game = new PixelGameEngine();
+const canvas = game.canvas.getCanvas();
 
 export function getInitialState() {
     return {
