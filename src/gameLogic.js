@@ -1,21 +1,14 @@
 import { PixelGameEngine } from "./lib/PixelGameEngine.js";
+import { getDefaultConfiguration } from "./lib/configurations.js";
 
 const game = new PixelGameEngine();
 const canvas = game.canvas.getCanvas();
 
 export function getInitialState() {
     return {
-        config: getConfigurations(),
-        display: generatePixelMatrix(getConfigurations().columns, getConfigurations().rows),
+        config: getDefaultConfiguration(),
+        display: generatePixelMatrix(getDefaultConfiguration().columns, getDefaultConfiguration().rows),
         ticks: 0,
-    };
-}
-
-export function getConfigurations() {
-    return {
-        fps: 60,
-        columns: 100,
-        rows: 100,
     };
 }
 

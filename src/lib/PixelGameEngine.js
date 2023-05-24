@@ -1,34 +1,35 @@
 import Canvas from "./Canvas.js";
+import { getDefaultConfiguration } from "./configurations.js";
 import { deepCopy } from "./utils.js";
 
 export class PixelGameEngine {
 
     static instance;
 
-    constructor(configuration, initialState, updateLogic, renderLogic, controlls = null) {
-        
-        if (PixelGameEngine.instance) {
-            return PixelGameEngine.instance;
-        }
+    constructor(initialState, updateLogic, renderLogic, controlls) {
       
-        this.configuration = configuration;
+        this.configuration = getDefaultConfiguration();
         this.initialState = deepCopy(initialState);
         this.state = deepCopy(initialState);
         this.updateFunction = updateLogic;
         this.renderFunction = renderLogic;
         this.controlls = controlls;
 
-        console.log(this.configuration);
-
         this.canvas = new Canvas(
-            configuration.HTMLCanvasElementId, 
-            configuration.canvasSize,
+            getDefaultConfiguration().HTMLCanvasElementId, 
+            getDefaultConfiguration().canvasSize,
         );
     
         // Internal data
         this.gameLoop;
-        
-        PixelGameEngine.instance = this;
+    }
+
+    static getInstance() {
+        return PixelGameEngine.instance;
+    }
+
+    static initInstance(initialState, updateLogic, renderLogic, controlls = null) {
+        PixelGameEngine.instance = new PixelGameEngine(initialState, updateLogic, renderLogic, controlls)
     }
 
     start() {

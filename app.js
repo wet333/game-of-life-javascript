@@ -1,11 +1,8 @@
-import { gameLogic, getInitialState } from "./src/gameLogic.js";
-import { getDefaultConfiguration } from "./src/lib/configurations.js";
 import { PixelGameEngine } from "./src/lib/PixelGameEngine.js";
+import { gameLogic, getInitialState } from "./src/gameLogic.js";
 import { drawGameState } from "./src/rendering.js";
 
-console.log("hello");
+PixelGameEngine.initInstance(getInitialState(), gameLogic, drawGameState);
+PixelGameEngine.getInstance().start();
 
-const pixelGame = new PixelGameEngine(getDefaultConfiguration(), getInitialState(), gameLogic, drawGameState);
-pixelGame.start();
-
-document.getElementById("restart-button").addEventListener("click", (e) => pixelGame.restart());
+document.getElementById("restart-button").addEventListener("click", (e) => PixelGameEngine.getInstance().restart());

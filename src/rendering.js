@@ -1,6 +1,7 @@
 import { PixelGameEngine } from "./lib/PixelGameEngine.js";
 
 const game = new PixelGameEngine();
+const canvas = game.canvas.getCanvas();
 const ctx = game.canvas.getContext();
 
 export function drawGameState(state) {
