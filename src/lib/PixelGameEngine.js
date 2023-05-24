@@ -1,3 +1,5 @@
+import { deepCopy } from "./utils.js";
+
 export class PixelGameEngine {
 
     constructor(configuration, initialState, updateLogic, renderLogic, controlls = null) {
@@ -7,8 +9,8 @@ export class PixelGameEngine {
         }
       
         this.configuration = configuration;
-        this.initialState = initialState;
-        this.state = initialState;
+        this.initialState = deepCopy(initialState);
+        this.state = deepCopy(initialState);
         this.updateFunction = updateLogic;
         this.renderFunction = renderLogic;
         this.controlls = controlls;
@@ -20,15 +22,15 @@ export class PixelGameEngine {
     }
 
     start() {
-        this.mainLoop = setInterval(() => {
+        this.gameLoop = setInterval(() => {
             this.renderFunction(this.state);
             this.updateFunction(this.state);
         }, this.configuration.fps)
     }
 
     restart() {
-        clearInterval(this.mainLoop);
-        this.state = this.initialState;
+        clearInterval(this.gameLoop);
+        this.state = deepCopy(this.initialState);
         this.start();
     }
 }
