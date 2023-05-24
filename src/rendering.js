@@ -1,6 +1,5 @@
 import { ctx } from "./canvas.js";
 
-
 export function drawGameState(state) {
     traverseDisplayMatrices(state.display.grid, state.display.colors, (gridElement, colorElement) => {
         ctx.fillStyle = colorElement;

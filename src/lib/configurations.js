@@ -1,0 +1,9 @@
+const DEFAULT_FPS = 60;
+const DEFAULT_COLUMNS = 100;
+const DEFAULT_ROWS = 100;
+
+export const DEFAULT_CONFIGURATIONS = {
+    fps: 1000 / DEFAULT_FPS,
+    columns: DEFAULT_COLUMNS,
+    rows: DEFAULT_ROWS,
+};
