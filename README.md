@@ -4,4 +4,4 @@ This is a JavaScript implementation of Conway's Game of Life. The Game of Life i
 ## Getting Started
 To run the Game of Life, simply open the index.html file in your web browser. You can click on the "Restart" button to generate a new random starting state.
 
-Here is the [Demo](http://awet-game-of-life.netlify.app) website, to restart the simulation just reload the page.
+Here is the [Demo](https://wet333.github.io/game-of-life-javascript/) website, to restart the simulation just reload the page.
